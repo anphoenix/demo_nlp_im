@@ -14,3 +14,6 @@ hs_err_pid*
 #for intellij project
 .idea/*
 *.iml
+
+#project specific output
+lda/data/LdaResults/*
