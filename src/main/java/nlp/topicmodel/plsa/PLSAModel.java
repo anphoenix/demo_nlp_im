@@ -19,7 +19,7 @@ import nlp.topicmodel.Config;
  * @blog http://blog.csdn.net/yangliuy
  * @mail yangliuyx@gmail.com
  */
-public class Plsa {
+public class PLSAModel {
 
 	private int iters;
 	
@@ -44,7 +44,7 @@ public class Plsa {
 
     
     
-    public Plsa(ModelParameters modelparam) {
+    public PLSAModel(ModelParameters modelparam) {
     	//init parameters
         topicNum = modelparam.topicNum;
         iters = modelparam.iteration;
@@ -93,7 +93,7 @@ public class Plsa {
 
     /**
      * 
-     * Plsa inference using EM
+     * PLSAModel inference using EM
      * 
      * @param docs all documents
      * @throws IOException 
@@ -340,7 +340,7 @@ public class Plsa {
 				tWordsIndexArray.add(new Integer(w));
 			}
 			Collections.sort(tWordsIndexArray,
-					new Plsa.TwordsComparable(topicTermPros[i]));
+					new PLSAModel.TwordsComparable(topicTermPros[i]));
 			String line = "topic=" + i + "\t";
 			for (int w = 0; w < topNum; w++) {
 				line += docSet.indexToTermMap.get(tWordsIndexArray.get(w)) + " , ";
