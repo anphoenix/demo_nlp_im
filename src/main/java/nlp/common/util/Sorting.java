@@ -1,4 +1,4 @@
-package liuyang.nlp.lda.com;
+package nlp.common.util;
 import java.util.Comparator;
 
 

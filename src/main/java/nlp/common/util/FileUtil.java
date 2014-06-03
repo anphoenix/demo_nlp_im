@@ -1,8 +1,6 @@
-package liuyang.nlp.lda.com;
+package nlp.common.util;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.io.*;
 
 
@@ -127,7 +125,7 @@ public class FileUtil {
 			for (int i = 0; i < uniWordMap.size(); i++) {
 				map.put(uniWordMap.get(i), uniWordMapCounts.get(i));
 			}
-			map = (HashMap<String, Integer>) ComUtil.sortByValue(map, flag);
+			map = (HashMap<String, Integer>) Util.sortByValue(map, flag);
 			writeLines(file, map);
 			map.clear();
 		}
@@ -502,7 +500,7 @@ public class FileUtil {
 
 	public static String filter4tokenization(String inputstring) {
 //		inputstring = "fds fds Won't won't can't Can't ain't";
-		// aggregate common tokenization error
+		// aggregate util tokenization error
 		inputstring = inputstring.replaceAll("(?i)won't", "will not");
 		inputstring = inputstring.replaceAll("(?i)can't", "can not");
 		inputstring = inputstring.replaceAll("(?i)shan't", "shall not");

@@ -1,6 +1,4 @@
-package liuyang.nlp.lda.com;
-
-import java.util.ArrayList;
+package nlp.common.util;
 
 
 public class wordFreq {

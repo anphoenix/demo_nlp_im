@@ -1,8 +1,4 @@
-package liuyang.nlp.lda.com;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.io.*;
+package nlp.common.util;
 
 public class MatrixUtil {
 	// irregular array

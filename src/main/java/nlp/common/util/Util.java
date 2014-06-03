@@ -1,14 +1,10 @@
-package liuyang.nlp.lda.com;
+package nlp.common.util;
 /**
- * 	This class contains common operations for data structure like array, arrayList, HashMap etc.
+ * 	This class contains util operations for data structure like array, arrayList, HashMap etc.
  * 
  * */
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -21,7 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class ComUtil {
+public class Util {
 	/**
 	 * String Operations
 	 * */
@@ -118,7 +114,7 @@ public class ComUtil {
 			FileUtil.readLines(type_map, types);
 			for (int i = 0; i < types.size(); i++) {
 				if (!types.get(i).isEmpty()) {
-					ComUtil.tokenize(types.get(i), tokens);
+					Util.tokenize(types.get(i), tokens);
 					if (tokens.size() != 0) {
 						if (tokens.size() != 2) {
 							for (int j = 0; j < tokens.size(); j++) {
@@ -154,7 +150,7 @@ public class ComUtil {
 			FileUtil.readLines(type_map, types);
 			for (int i = 0; i < types.size(); i++) {
 				if (!types.get(i).isEmpty()) {
-					ComUtil.tokenize(types.get(i), tokens);
+					Util.tokenize(types.get(i), tokens);
 					if (tokens.size() != 0) {
 						if (tokens.size() != 2) {
 							for (int j = 0; j < tokens.size(); j++) {
@@ -192,7 +188,7 @@ public class ComUtil {
 			FileUtil.readLines(type_map, types);
 			for (int i = 0; i < types.size(); i++) {
 				if (!types.get(i).isEmpty()) {
-					ComUtil.tokenize(types.get(i), tokens);
+					Util.tokenize(types.get(i), tokens);
 					if (tokens.size() != 0) {
 						if (tokens.size() != 2) {
 							for (int j = 0; j < tokens.size(); j++) {
@@ -561,7 +557,7 @@ public class ComUtil {
 //		System.out.println(rouletter + "\t" + sample);
 		
 		if(sample < 0 | sample >= T) {
-			ComUtil.print(probs, "\t", "\n");
+			Util.print(probs, "\t", "\n");
 			System.out.println("Sampling error!");
 			System.exit(0);
 		}

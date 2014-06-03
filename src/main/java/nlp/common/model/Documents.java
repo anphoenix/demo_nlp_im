@@ -1,4 +1,4 @@
-package liuyang.nlp.lda.main;
+package nlp.common.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,23 +9,16 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import liuyang.nlp.lda.com.ChineseStopWords;
-import liuyang.nlp.lda.com.ChineseTraditionalTokenizator;
-import liuyang.nlp.lda.com.FileUtil;
-import liuyang.nlp.lda.com.Stopwords;
-
-/**Class for corpus which consists of M documents
- * @author yangliu
- * @blog http://blog.csdn.net/yangliuy
- * @mail yangliuyx@gmail.com
- */
+import nlp.common.util.chinese.ChineseStopWords;
+import nlp.common.util.chinese.ChineseTraditionalTokenizator;
+import nlp.common.util.FileUtil;
 
 public class Documents {
 	
-	ArrayList<Document> docs; 
-	Map<String, Integer> termToIndexMap;
-	ArrayList<String> indexToTermMap;
-	Map<String,Integer> termCountMap;
+	public ArrayList<Document> docs;
+	public Map<String, Integer> termToIndexMap;
+	public ArrayList<String> indexToTermMap;
+	public Map<String,Integer> termCountMap;
 	
 	public Documents(){
 		docs = new ArrayList<Document>();
@@ -43,7 +36,7 @@ public class Documents {
 	
 	public static class Document {	
 		private String docName;
-		int[] docWords;
+		public int[] docWords;
 		
 		public Document(String docName, Map<String, Integer> termToIndexMap, ArrayList<String> indexToTermMap, Map<String, Integer> termCountMap){
 			this.docName = docName;

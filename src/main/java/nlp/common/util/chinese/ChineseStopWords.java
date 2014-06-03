@@ -1,18 +1,18 @@
-package liuyang.nlp.lda.com;
+package nlp.common.util.chinese;
+
+import nlp.topicmodel.Config;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import liuyang.nlp.lda.conf.ConstantConfig;
-
 public class ChineseStopWords {
 	private static File stopWords;
 	private static ArrayList<String> SWList;
 	
 	public static void init() throws FileNotFoundException {
-		stopWords = new File(ConstantConfig.CH_STOPWORDS_FILE); //read the stop-word library
+		stopWords = new File(Config.CH_STOPWORDS_FILE); //read the stop-word library
 		Scanner scan = new Scanner(stopWords);
 		SWList = new ArrayList<String>();
 		

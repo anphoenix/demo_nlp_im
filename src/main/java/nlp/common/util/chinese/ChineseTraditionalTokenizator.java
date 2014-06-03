@@ -1,4 +1,4 @@
-package liuyang.nlp.lda.com;
+package nlp.common.util.chinese;
 
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;

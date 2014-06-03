@@ -1,10 +1,5 @@
-package liuyang.nlp.lda.main;
+package nlp.topicmodel.lda;
 
-/**Class for Lda model
- * @author yangliu
- * @blog http://blog.csdn.net/yangliuy
- * @mail yangliuyx@gmail.com
- */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,10 +8,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import liuyang.nlp.lda.com.FileUtil;
-import liuyang.nlp.lda.conf.PathConfig;
+import nlp.common.model.Documents;
+import nlp.common.util.FileUtil;
+import nlp.topicmodel.Config;
 
-public class LdaModel {
+public class LDAModel {
 	
 	int [][] doc;//word index array
 	int V, K, M;//vocabulary size, topic number, document number
@@ -33,7 +29,7 @@ public class LdaModel {
 	int saveStep;//The number of iterations between two saving
 	int beginSaveIters;//Begin save model at this iteration
 	
-	public LdaModel(LdaGibbsSampling.modelparameters modelparam) {
+	public LDAModel(LDAGibbsSampling.ModelParameters modelparam) {
 		// TODO Auto-generated constructor stub
 		alpha = modelparam.alpha;
 		beta = modelparam.beta;
@@ -171,7 +167,7 @@ public class LdaModel {
 		// TODO Auto-generated method stub
 		//lda.params lda.phi lda.theta lda.tassign lda.twords
 		//lda.params
-		String resPath = PathConfig.LdaResultsPath;
+		String resPath = Config.LDA_RESULT;
 		String modelName = "lda_" + iters;
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("alpha = " + alpha);
@@ -222,7 +218,7 @@ public class LdaModel {
 			for(int j = 0; j < V; j++){
 				tWordsIndexArray.add(new Integer(j));
 			}
-			Collections.sort(tWordsIndexArray, new LdaModel.TwordsComparable(phi[i]));
+			Collections.sort(tWordsIndexArray, new LDAModel.TwordsComparable(phi[i]));
 			writer.write("topic " + i + "\t:\t");
 			for(int t = 0; t < topNum; t++){
 				//writer.write(docSet.indexToTermMap.get(tWordsIndexArray.get(t)) + ":" + phi[i][tWordsIndexArray.get(t)] + "  ");

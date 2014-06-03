@@ -1,22 +1,16 @@
-package liuyang.nlp.lda.main;
+package nlp.topicmodel.lda;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import liuyang.nlp.lda.com.FileUtil;
-import liuyang.nlp.lda.conf.ConstantConfig;
-import liuyang.nlp.lda.conf.PathConfig;
+import nlp.common.model.Documents;
+import nlp.common.util.FileUtil;
+import nlp.topicmodel.Config;
 
-/**Liu Yang's implementation of Gibbs Sampling of LDA
- * @author yangliu
- * @blog http://blog.csdn.net/yangliuy
- * @mail yangliuyx@gmail.com
- */
-
-public class LdaGibbsSampling {
+public class LDAGibbsSampling {
 	
-	public static class modelparameters {
+	public static class ModelParameters {
 		float alpha = 0.5f; //usual value is 50 / K
 		float beta = 0.1f;//usual value is 0.1
 		int topicNum = 100;
@@ -32,7 +26,7 @@ public class LdaGibbsSampling {
 	 * @param parameterFile
 	 * @return void
 	 */
-	private static void getParametersFromFile(modelparameters ldaparameters,
+	private static void getParametersFromFile(ModelParameters ldaparameters,
 			String parameterFile) {
 		// TODO Auto-generated method stub
 		ArrayList<String> paramLines = new ArrayList<String>();
@@ -72,17 +66,17 @@ public class LdaGibbsSampling {
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String originalDocsPath = PathConfig.ldaDocsPath;
-		String resultPath = PathConfig.LdaResultsPath;
-		String parameterFile= ConstantConfig.LDAPARAMETERFILE;
-		
-		modelparameters ldaparameters = new modelparameters();
+		String originalDocsPath = Config.DOCPATH;
+		String resultPath = Config.LDA_RESULT;
+		String parameterFile= Config.LDA_PARAMETERFILE;
+
+        ModelParameters ldaparameters = new ModelParameters();
 		getParametersFromFile(ldaparameters, parameterFile);
 		Documents docSet = new Documents();
 		docSet.readDocs(originalDocsPath);
 		System.out.println("wordMap size " + docSet.termToIndexMap.size());
 		FileUtil.mkdir(new File(resultPath));
-		LdaModel model = new LdaModel(ldaparameters);
+		LDAModel model = new LDAModel(ldaparameters);
 		System.out.println("1 Initialize the model ...");
 		model.initializeModel(docSet);
 		System.out.println("2 Learning and Saving the model ...");
