@@ -1,0 +1,1 @@
+topicNum	5iteration	100saveStep	10beginSaveIters	80

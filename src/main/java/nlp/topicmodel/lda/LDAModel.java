@@ -29,7 +29,7 @@ public class LDAModel {
 	int saveStep;//The number of iterations between two saving
 	int beginSaveIters;//Begin save model at this iteration
 	
-	public LDAModel(LDAGibbsSampling.ModelParameters modelparam) {
+	public LDAModel(LDATest.ModelParameters modelparam) {
 		// TODO Auto-generated constructor stub
 		alpha = modelparam.alpha;
 		beta = modelparam.beta;
@@ -222,7 +222,7 @@ public class LDAModel {
 			writer.write("topic " + i + "\t:\t");
 			for(int t = 0; t < topNum; t++){
 				//writer.write(docSet.indexToTermMap.get(tWordsIndexArray.get(t)) + ":" + phi[i][tWordsIndexArray.get(t)] + "  ");
-				writer.write(docSet.indexToTermMap.get(tWordsIndexArray.get(t)) +" | ");
+				writer.write(docSet.indexToTermMap.get(tWordsIndexArray.get(t)) +" , ");
 				
 			}
 			writer.write("\n");

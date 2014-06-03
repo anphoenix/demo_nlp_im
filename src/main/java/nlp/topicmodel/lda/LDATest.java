@@ -8,7 +8,7 @@ import nlp.common.model.Documents;
 import nlp.common.util.FileUtil;
 import nlp.topicmodel.Config;
 
-public class LDAGibbsSampling {
+public class LDATest {
 	
 	public static class ModelParameters {
 		float alpha = 0.5f; //usual value is 50 / K

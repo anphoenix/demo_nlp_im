@@ -7,11 +7,13 @@ public class Config {
 
     //Configuration for LDA
 	public static String LDA_RESULT = "data/output/lda/";
-    public static String LDA_PARAMETERFILE = "data/lda/parameters.txt";
+    public static String LDA_PARAMETERFILE = "data/lda_parameter/parameters.txt";
 
     //Configuration for PLSA
     public static String PLSA_RESULT = "data/output/plsa/";
-    public static String PLSA_PARAMETERFILE = "data/plsa/parameters.txt";
+    public static String PLSA_PARAMETERFILE = "data/plsa_parameter/parameters.txt";
+    
+    
 
 
 }

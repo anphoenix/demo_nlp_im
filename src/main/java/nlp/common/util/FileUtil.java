@@ -498,6 +498,18 @@ public class FileUtil {
 		}
 	}
 
+	public static void write2DArray(double[][] phiT, String phiTFileName) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedWriter writer = new BufferedWriter(new FileWriter(phiTFileName));
+		for(int i = 0; i < phiT.length; i++){
+			for(int j = 0; j < phiT[i].length; j++){
+				writer.append(phiT[i][j] + "\t");
+			}
+			writer.append("\n");
+		}
+		writer.flush();
+		writer.close();
+	}
 	public static String filter4tokenization(String inputstring) {
 //		inputstring = "fds fds Won't won't can't Can't ain't";
 		// aggregate util tokenization error
