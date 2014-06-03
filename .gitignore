@@ -15,5 +15,10 @@ hs_err_pid*
 .idea/*
 *.iml
 
+#for eclipse project
+.classpath
+.project
+.settings/*
+
 #project specific output
 lda/data/LdaResults/*
