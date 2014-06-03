@@ -29,7 +29,7 @@ public class LDAModel {
 	int saveStep;//The number of iterations between two saving
 	int beginSaveIters;//Begin save model at this iteration
 	
-	public LDAModel(LDATest.ModelParameters modelparam) {
+	public LDAModel(ModelParameters modelparam) {
 		// TODO Auto-generated constructor stub
 		alpha = modelparam.alpha;
 		beta = modelparam.beta;

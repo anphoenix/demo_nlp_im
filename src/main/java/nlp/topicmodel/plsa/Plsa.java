@@ -11,7 +11,6 @@ import nlp.common.model.Documents;
 import nlp.common.model.Documents.Document;
 import nlp.common.util.FileUtil;
 import nlp.topicmodel.Config;
-import nlp.topicmodel.plsa.PlsaTest.ModelParameters;
 
 /**
  * Class for PLSA model using EM
