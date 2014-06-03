@@ -12,13 +12,6 @@ import nlp.common.model.Documents.Document;
 import nlp.common.util.FileUtil;
 import nlp.topicmodel.Config;
 
-/**
- * Class for PLSA model using EM
- * 
- * @author yangliu
- * @blog http://blog.csdn.net/yangliuy
- * @mail yangliuyx@gmail.com
- */
 public class PLSAModel {
 
 	private int iters;
