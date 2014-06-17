@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nlp.common.util.MD5;
 import nlp.common.util.chinese.ChineseStopWords;
 import nlp.common.util.chinese.ChineseTraditionalTokenizator;
 import nlp.common.util.FileUtil;
@@ -27,10 +28,27 @@ public class Documents {
 		termCountMap = new HashMap<String, Integer>();
 	}
 	
-	public void readDocs(String docsPath){
+	public void readDocs(String docsPath, boolean byline){
+        try {
+            ChineseStopWords.init();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		for(File docFile : new File(docsPath).listFiles()){
-			Document doc = new Document(docFile.getAbsolutePath(), termToIndexMap, indexToTermMap, termCountMap);
-			docs.add(doc);
+            if(byline){
+                ArrayList<String> docLines = new ArrayList<String>();
+                FileUtil.readLines(docFile.getAbsolutePath(), docLines);
+                for(String line : docLines){
+                    Document doc = new Document(line, termToIndexMap, indexToTermMap, termCountMap, byline);
+                    docs.add(doc);
+                }
+
+            } else {
+                Document doc = new Document(docFile.getAbsolutePath(), termToIndexMap, indexToTermMap, termCountMap);
+                docs.add(doc);
+            }
+
 		}
 	}
 	
@@ -52,12 +70,6 @@ public class Documents {
 					e.printStackTrace();
 				}
 			}
-			try {
-				ChineseStopWords.init();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			//Remove stop words and noise words
 			for(int i = 0; i < words.size(); i++){
 				if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
@@ -67,21 +79,63 @@ public class Documents {
 			}
 			//Transfer word to index
 			this.docWords = new int[words.size()];
-			for(int i = 0; i < words.size(); i++){
-				String word = words.get(i);
-				if(!termToIndexMap.containsKey(word)){
-					int newIndex = termToIndexMap.size();
-					termToIndexMap.put(word, newIndex);
-					indexToTermMap.add(word);
-					termCountMap.put(word, new Integer(1));
-					docWords[i] = newIndex;
-				} else {
-					docWords[i] = termToIndexMap.get(word);
-					termCountMap.put(word, termCountMap.get(word) + 1);
-				}
-			}
+            this.buildIndex(words, termToIndexMap, indexToTermMap, termCountMap);
+//			for(int i = 0; i < words.size(); i++){
+//				String word = words.get(i);
+//				if(!termToIndexMap.containsKey(word)){
+//					int newIndex = termToIndexMap.size();
+//					termToIndexMap.put(word, newIndex);
+//					indexToTermMap.add(word);
+//					termCountMap.put(word, new Integer(1));
+//					docWords[i] = newIndex;
+//				} else {
+//					docWords[i] = termToIndexMap.get(word);
+//					termCountMap.put(word, termCountMap.get(word) + 1);
+//				}
+//			}
 			words.clear();
 		}
+
+        public Document(String text, Map<String, Integer> termToIndexMap, ArrayList<String> indexToTermMap, Map<String, Integer> termCountMap, boolean byline){
+            this.docName = MD5.GetMD5Code(text);
+            //Read file and initialize word index array
+            ArrayList<String> words = new ArrayList<String>();
+
+            try {
+                ChineseTraditionalTokenizator.tokenizeAndLowerCase(text, words);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            //Remove stop words and noise words
+            for(int i = 0; i < words.size(); i++){
+                if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
+                    words.remove(i);
+                    i--;
+                }
+            }
+            //Transfer word to index
+            this.docWords = new int[words.size()];
+            this.buildIndex(words, termToIndexMap, indexToTermMap, termCountMap);
+            words.clear();
+        }
+
+        private void buildIndex(ArrayList<String> words, Map<String, Integer> termToIndexMap, ArrayList<String> indexToTermMap, Map<String, Integer> termCountMap){
+            for(int i = 0; i < words.size(); i++){
+                String word = words.get(i);
+                if(!termToIndexMap.containsKey(word)){
+                    int newIndex = termToIndexMap.size();
+                    termToIndexMap.put(word, newIndex);
+                    indexToTermMap.add(word);
+                    termCountMap.put(word, new Integer(1));
+                    docWords[i] = newIndex;
+                } else {
+                    docWords[i] = termToIndexMap.get(word);
+                    termCountMap.put(word, termCountMap.get(word) + 1);
+                }
+            }
+        }
 		
 		public boolean isNoiseWord(String string) {
 			// TODO Auto-generated method stub

@@ -23,7 +23,7 @@ public class LDATest {
         ModelParameters ldaparameters = new ModelParameters();
         ldaparameters.getParametersFromFile(ldaparameters, parameterFile);
 		Documents docSet = new Documents();
-		docSet.readDocs(originalDocsPath);
+		docSet.readDocs(originalDocsPath, false);
 		System.out.println("wordMap size " + docSet.termToIndexMap.size());
 		FileUtil.mkdir(new File(resultPath));
 		LDAModel model = new LDAModel(ldaparameters);

@@ -16,7 +16,7 @@ public class PLSATest {
     	ModelParameters plsaparameters = new ModelParameters();
         plsaparameters.getParametersFromFile(plsaparameters, parameterFile);
     	PLSAModel model = new PLSAModel(plsaparameters);
-    	docSet.readDocs(Config.DOCPATH);
+    	docSet.readDocs(Config.DOCPATH, false);
     	System.out.println("docSet: " + docSet.docs.size());
 		
     	System.out.println("1 Initialize the model ...");
