@@ -64,7 +64,7 @@ public class Documents {
 			FileUtil.readLines(docName, docLines);
 			for(String line : docLines){
 				try {
-					ChineseTraditionalTokenizator.tokenizeAndLowerCase(line, words);
+					ChineseTraditionalTokenizator.getInstance().tokenizeAndLowerCase(line, words);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,7 +102,7 @@ public class Documents {
             ArrayList<String> words = new ArrayList<String>();
 
             try {
-                ChineseTraditionalTokenizator.tokenizeAndLowerCase(text, words);
+                ChineseTraditionalTokenizator.getInstance().tokenizeAndLowerCase(text, words);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

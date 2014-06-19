@@ -3,6 +3,7 @@ package nlp.common.util.chinese;
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;
 
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -11,14 +12,21 @@ import java.util.ArrayList;
 
 public class ChineseTraditionalTokenizator {
 
-public static ChineseTraditionalTokenizator INSTANCE = new ChineseTraditionalTokenizator();
+	private static ChineseTraditionalTokenizator instance;
 
 
 	private ChineseTraditionalTokenizator(){
 
 	}
 	
-	public static void tokenizeAndLowerCase(String line, ArrayList<String> tokens) throws IOException
+	public static ChineseTraditionalTokenizator getInstance(){
+		if(instance == null){
+			instance = new ChineseTraditionalTokenizator();
+		} 
+		return instance;
+	}
+	
+	public void tokenizeAndLowerCase(String line, ArrayList<String> tokens) throws IOException
 	{
 		StringReader sr=new StringReader(line);
 		IKSegmentation iks=new IKSegmentation(sr, true);
