@@ -38,15 +38,10 @@ public class Tweet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			ChineseStopWords.init();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		for (int i = 0; i < tokens.size(); i++) {
 			String tmpToken = tokens.get(i).toLowerCase();
-			if (!ChineseStopWords.isStopWord(tmpToken) && !isNoisy(tmpToken) && tmpToken.length()>1) {
+			if (!ChineseStopWords.INSTANCE.isStopWord(tmpToken) && !isNoisy(tmpToken) && tmpToken.length()>1) {
 				if (!wordMap.containsKey(tmpToken)) {
 					words.add(number);
 					wordMap.put(tmpToken, number++);

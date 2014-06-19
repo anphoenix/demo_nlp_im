@@ -10,18 +10,26 @@ import java.util.Scanner;
 public class ChineseStopWords {
 	private static File stopWords;
 	private static ArrayList<String> SWList;
+	public static ChineseStopWords INSTANCE = new ChineseStopWords();
 	
-	public static void init() throws FileNotFoundException {
+	private ChineseStopWords()  {
 		stopWords = new File(Config.CH_STOPWORDS_FILE); //read the stop-word library
-		Scanner scan = new Scanner(stopWords);
 		SWList = new ArrayList<String>();
-		
-		while (scan.hasNextLine()) {
-			SWList.add(scan.nextLine()); //put all the stop words into an arraylist
+		try {
+			Scanner scan = new Scanner(stopWords);
+			while (scan.hasNextLine()) {
+				SWList.add(scan.nextLine()); //put all the stop words into an arraylist
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
+		
 	}
 	
-	public static boolean isStopWord(String word) {
+	public boolean isStopWord(String word) {
 		boolean result = false;
 		if (word.equals("")) {
 			result = true;
