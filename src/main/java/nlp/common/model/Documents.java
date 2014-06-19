@@ -29,12 +29,6 @@ public class Documents {
 	}
 	
 	public void readDocs(String docsPath, boolean byline){
-        try {
-            ChineseStopWords.init();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 		for(File docFile : new File(docsPath).listFiles()){
             if(byline){
                 ArrayList<String> docLines = new ArrayList<String>();
@@ -72,7 +66,7 @@ public class Documents {
 			}
 			//Remove stop words and noise words
 			for(int i = 0; i < words.size(); i++){
-				if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
+				if(ChineseStopWords.INSTANCE.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
 					words.remove(i);
 					i--;
 				}
@@ -110,7 +104,7 @@ public class Documents {
 
             //Remove stop words and noise words
             for(int i = 0; i < words.size(); i++){
-                if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
+                if(ChineseStopWords.INSTANCE.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
                     words.remove(i);
                     i--;
                 }
