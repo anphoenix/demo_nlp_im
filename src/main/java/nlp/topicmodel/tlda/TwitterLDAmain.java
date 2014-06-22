@@ -49,8 +49,14 @@ public class TwitterLDAmain {
 		//FileUtil.mkdir(new File(outputDir));
 
 		ArrayList<String> files = new ArrayList<String>();
-		FileUtil.readLines(filelist, files);
-
+        File fileDir = new File(dataDir);
+        File [] fileArrary = fileDir.listFiles();
+		//FileUtil.readLines(filelist, files);
+        for (File file : fileArrary)
+        {
+            files.add(file.getName());
+            System.out.println(file.getName());
+        }
 		// 1. get model parameters
 		ArrayList<String> modelSettings = new ArrayList<String>();
 		getModelPara(modelParas, modelSettings);

@@ -349,8 +349,6 @@ public class PLSAModel {
 		public TwordsComparable(double[] sortProb) {
 			this.sortProb = sortProb;
 		}
-
-		@Override
 		public int compare(Integer o1, Integer o2) {
 			// TODO Auto-generated method stub
 			// Sort topic word index according to the probability of each word

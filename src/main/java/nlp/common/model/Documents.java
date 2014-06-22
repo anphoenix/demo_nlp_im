@@ -1,7 +1,6 @@
 package nlp.common.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.regex.Pattern;
 
 import nlp.common.util.MD5;
 import nlp.common.util.chinese.ChineseStopWords;
-import nlp.common.util.chinese.ChineseTraditionalTokenizator;
+import nlp.common.util.chinese.ChineseTokenizer;
 import nlp.common.util.FileUtil;
 
 public class Documents {
@@ -58,8 +57,8 @@ public class Documents {
 			FileUtil.readLines(docName, docLines);
 			for(String line : docLines){
 				try {
-					ChineseTraditionalTokenizator.getInstance().tokenizeAndLowerCase(line, words);
-				} catch (IOException e) {
+					ChineseTokenizer.getInstance().tokenizeAndLowerCase(line, words);
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -96,8 +95,8 @@ public class Documents {
             ArrayList<String> words = new ArrayList<String>();
 
             try {
-                ChineseTraditionalTokenizator.getInstance().tokenizeAndLowerCase(text, words);
-            } catch (IOException e) {
+                ChineseTokenizer.getInstance().tokenizeAndLowerCase(text, words);
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }

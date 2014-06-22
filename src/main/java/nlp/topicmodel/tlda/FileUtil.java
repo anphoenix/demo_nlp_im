@@ -9,7 +9,6 @@ public class FileUtil {
 
 	public static void readLines(String file, ArrayList<String> lines) {
 		BufferedReader reader = null;
-
 		try {
 
 			reader = new BufferedReader(new FileReader(new File(file)));

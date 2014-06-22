@@ -3,9 +3,10 @@ package nlp.topicmodel.tlda;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
-import nlp.common.util.chinese.ChineseTraditionalTokenizator; 
+import nlp.common.util.chinese.ChineseTokenizer;
 import nlp.common.util.chinese.ChineseStopWords;
 
 
@@ -17,7 +18,7 @@ import nlp.common.util.chinese.ChineseStopWords;
 public class Tweet {
 
 	protected int time;
-
+    public static int n =1;
 	protected int[] tweetwords;
 
 	public Tweet(String dataline, HashMap<String, Integer> wordMap,
@@ -25,22 +26,27 @@ public class Tweet {
 
 		int number = wordMap.size();
 
-		// String inline = dataline.substring(20);
-		String inline = dataline.replaceAll("(//)?@([^:^@])*:?", "").replaceAll("[a-z]|[A-Z]|[0-9]", ""); // no specific restriction of input data
+		String inline = dataline.replaceAll("(//)?@([^:^@^ ^，^：])*:?", "").replaceAll("[a-z]|[A-Z]|[0-9]", ""); // no specific restriction of input data
 
 		ArrayList<Integer> words = new ArrayList<Integer>();
-		ArrayList<String> tokens = new ArrayList<String>();
-
+		//ArrayList<String> tokens = new ArrayList<String>();
+        HashMap<String, String> tokens = new HashMap<String, String>();
 		//ComUtil.tokenize(inline, tokens);
+
 		try {
-			ChineseTraditionalTokenizator.getInstance().tokenizeAndLowerCase(inline, tokens);
-		} catch (IOException e) {
+			//ChineseTokenizer.getInstance().tokenizeAndLowerCase(inline, tokens);
+            //System.out.println(n + inline);
+            n++;
+            ChineseTokenizer.getInstance().tokenizeWithPOS(inline, tokens, false);
+            ChineseTokenizer.getInstance().filterTokenByPOS(tokens);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for (int i = 0; i < tokens.size(); i++) {
-			String tmpToken = tokens.get(i).toLowerCase();
+
+        for (Map.Entry<String, String> entry : tokens.entrySet())
+        {
+			String tmpToken = entry.getKey();
 			if (!ChineseStopWords.INSTANCE.isStopWord(tmpToken) && !isNoisy(tmpToken) && tmpToken.length()>1) {
 				if (!wordMap.containsKey(tmpToken)) {
 					words.add(number);
