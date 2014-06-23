@@ -1,0 +1,6 @@
+topics: 30
+alpha_g: 0.5
+beta_word: 0.1
+beta_b: 0.01
+gamma: 15
+iteration: 200

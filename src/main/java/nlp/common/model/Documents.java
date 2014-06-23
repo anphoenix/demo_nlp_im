@@ -1,7 +1,6 @@
 package nlp.common.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.regex.Pattern;
 
 import nlp.common.util.MD5;
 import nlp.common.util.chinese.ChineseStopWords;
-import nlp.common.util.chinese.ChineseTraditionalTokenizator;
+import nlp.common.util.chinese.ChineseTokenizer;
 import nlp.common.util.FileUtil;
 
 public class Documents {
@@ -29,12 +28,6 @@ public class Documents {
 	}
 	
 	public void readDocs(String docsPath, boolean byline){
-        try {
-            ChineseStopWords.init();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 		for(File docFile : new File(docsPath).listFiles()){
             if(byline){
                 ArrayList<String> docLines = new ArrayList<String>();
@@ -64,15 +57,15 @@ public class Documents {
 			FileUtil.readLines(docName, docLines);
 			for(String line : docLines){
 				try {
-					ChineseTraditionalTokenizator.tokenizeAndLowerCase(line, words);
-				} catch (IOException e) {
+					ChineseTokenizer.getInstance().tokenizeAndLowerCase(line, words);
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			//Remove stop words and noise words
 			for(int i = 0; i < words.size(); i++){
-				if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
+				if(ChineseStopWords.INSTANCE.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
 					words.remove(i);
 					i--;
 				}
@@ -102,15 +95,15 @@ public class Documents {
             ArrayList<String> words = new ArrayList<String>();
 
             try {
-                ChineseTraditionalTokenizator.tokenizeAndLowerCase(text, words);
-            } catch (IOException e) {
+                ChineseTokenizer.getInstance().tokenizeAndLowerCase(text, words);
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
             //Remove stop words and noise words
             for(int i = 0; i < words.size(); i++){
-                if(ChineseStopWords.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
+                if(ChineseStopWords.INSTANCE.isStopWord(words.get(i).replaceAll(" ", "").replaceAll("　", ""))){
                     words.remove(i);
                     i--;
                 }
