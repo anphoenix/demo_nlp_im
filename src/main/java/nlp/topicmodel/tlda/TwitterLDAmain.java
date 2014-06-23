@@ -55,7 +55,7 @@ public class TwitterLDAmain {
         for (File file : fileArrary)
         {
             files.add(file.getName());
-            System.out.println(file.getName());
+            //System.out.println(file.getName());
         }
 		// 1. get model parameters
 		ArrayList<String> modelSettings = new ArrayList<String>();

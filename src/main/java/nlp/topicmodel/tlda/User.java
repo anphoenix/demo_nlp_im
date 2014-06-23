@@ -24,11 +24,11 @@ public class User {
 		FileUtil.readLines(Dir, datalines);		
 		
 		this.tweetCnt = datalines.size();
-		
+
 		for(int lineNo = 0; lineNo < datalines.size(); lineNo++) {
 			String line = datalines.get(lineNo);
 			Tweet tw = new Tweet(line, wordMap, uniWordMap);
-			tweets.add(tw);						
+			tweets.add(tw);
 		}
 		
 		datalines.clear();

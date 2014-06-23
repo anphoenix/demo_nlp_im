@@ -18,7 +18,7 @@ import nlp.common.util.chinese.ChineseStopWords;
 public class Tweet {
 
 	protected int time;
-    public static int n =1;
+    //public static int n =1;
 	protected int[] tweetwords;
 
 	public Tweet(String dataline, HashMap<String, Integer> wordMap,
@@ -36,7 +36,7 @@ public class Tweet {
 		try {
 			//ChineseTokenizer.getInstance().tokenizeAndLowerCase(inline, tokens);
             //System.out.println(n + inline);
-            n++;
+            //n++;
             ChineseTokenizer.getInstance().tokenizeWithPOS(inline, tokens, false);
             ChineseTokenizer.getInstance().filterTokenByPOS(tokens);
 		} catch (Exception e) {

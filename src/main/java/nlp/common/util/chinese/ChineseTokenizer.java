@@ -62,6 +62,10 @@ public class ChineseTokenizer {
     //like 东西:名词
     public void tokenizeWithPOS(String line, HashMap<String, String> tokens, boolean isTokened) throws Exception
     {
+        if(line.length() == 0){
+            //System.out.println("emptyline: " + line);
+            return;
+        }
         if (!isTokened) {
             String[][] temp = tag.tag2Array(line);
             for (int i = 0; i < temp[0].length; i++) {
