@@ -47,7 +47,7 @@ public class Tweet {
         for (Map.Entry<String, String> entry : tokens.entrySet())
         {
 			String tmpToken = entry.getKey();
-			if (!ChineseStopWords.INSTANCE.isStopWord(tmpToken) && !isNoisy(tmpToken) && tmpToken.length()>1) {
+			if (!ChineseStopWords.INSTANCE.isStopWord(tmpToken) && !isNoisy(tmpToken) ) {
 				if (!wordMap.containsKey(tmpToken)) {
 					words.add(number);
 					wordMap.put(tmpToken, number++);
